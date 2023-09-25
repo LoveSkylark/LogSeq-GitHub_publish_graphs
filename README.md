@@ -1,5 +1,9 @@
 ## Description
-This README.md file provides instructions for publishing your LogSeq Graph site in a shared <owner>.github.io location using a GitHub Action. It also includes information about setting up the required API key and adding an index.html file for easy navigation.
+This Repository provides instructions for publishing your LogSeq Graph site in a shared <owner>.github.io location using a GitHub Action. It also includes information about setting up the required API key and adding an index.html file for easy navigation.
+
+When information is pushed into the Private LogSeq repository containing the the Graph an action will conver all publishes pages in the grpah into a website.
+
+
 
 ### Github Action
 To publish your LogSeq Graph in a remote repository, you need to provide the GitHub Action with an API key called GH_TOKEN. Follow these steps to configure the key:
