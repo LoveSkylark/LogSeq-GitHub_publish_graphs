@@ -1,0 +1,30 @@
+on: [push]
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Publish Logseq graph
+    steps:
+      - uses: actions/checkout@v3
+      - uses: logseq/publish-spa@v0.2.0
+      - name: Add a nojekyll file 
+        run: touch $GITHUB_WORKSPACE/www/.nojekyll
+      - name: Getting Folder name for public
+        run: |
+          repo_full_name="${{ github.repository }}"
+          repo_name="${repo_full_name%%/*}"
+          repo_folder="${repo_full_name#*/}"
+          repo_name_lowercase=$(echo "$repo_name" | tr '[:upper:]' '[:lower:]')
+          echo "REPO_FOLDER=${repo_folder}" >> $GITHUB_ENV
+          echo "REPO_REPO=${repo_name}/${repo_name_lowercase}.github.io" >> $GITHUB_ENV
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: www
+          token: ${{ secrets.GH_TOKEN }}
+          repository-name: ${{ env.REPO_REPO }}
+          branch: main
+          target-folder: ${{ env.REPO_FOLDER }}
