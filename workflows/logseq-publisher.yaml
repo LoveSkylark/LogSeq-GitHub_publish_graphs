@@ -17,7 +17,7 @@ jobs:
       - name: Create a .nojekyll file in the www folder to bypass Jekyll processing.
         run: touch $GITHUB_WORKSPACE/www/.nojekyll
 
-      - name:  Retrieves the folder name for public deployment and sets environment variables.
+      - name:  Retrieve the folder name for public deployment and sets environment variables.
         run: |
           if [[ -n "${{ env.GITHUB_IO }}" ]]; then
             repo_name=${{ env.GITHUB_IO }}
