@@ -19,12 +19,21 @@ jobs:
 
       - name:  Retrieves the folder name for public deployment and sets environment variables.
         run: |
-          repo_full_name="${{ github.repository }}"
-          repo_name="${repo_full_name%%/*}"
-          repo_folder="${repo_full_name#*/}"
+          if [[ -n "${{ env.GITHUB_IO }}" ]]; then
+            repo_name=${{ env.GITHUB_IO }}
+          else
+            repo_full_name="${{ github.repository }}"
+            repo_name="${repo_full_name%%/*}"
+          fi
           repo_name_lowercase=$(echo "$repo_name" | tr '[:upper:]' '[:lower:]')
-          echo "REPO_FOLDER=${repo_folder}" >> $GITHUB_ENV
           echo "REPO_REPO=${repo_name}/${repo_name_lowercase}.github.io" >> $GITHUB_ENV
+          if [[ -n "${{ env.FOLDER }}" ]]; then
+            echo "REPO_FOLDER=${{ env.FOLDER }}" >> $GITHUB_ENV
+          else
+            repo_folder="${repo_full_name#*/}"
+            echo "REPO_FOLDER=${repo_folder}" >> $GITHUB_ENV
+          fi
+
 
       - name: Deploys the Logseq graph to GitHub Pages.
         uses: JamesIves/github-pages-deploy-action@v4
