@@ -3,7 +3,7 @@ This Repository provides instructions for setting and publishing your private Lo
 It also includes information about setting up the required API key and adding an index.html file for easy navigation.
 
 exmple:
-> If the `<owner>` `BestOwner` builds a privat repo `LogBook` containing a graph then this action would publish it under `bestowner.github.io/LogBook`
+> If the <owner> `BestOwner` builds a privat repo `LogBook` containing a graph then this action would publish it under `bestowner.github.io/LogBook`
 
 
 ## How does it work
