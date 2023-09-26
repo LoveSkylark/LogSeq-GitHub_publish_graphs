@@ -1,5 +1,5 @@
 ## Description
-This Repository provides instructions for setting and publishing your private LogSeq Graph as a shared site <owner>.github.io location using a GitHub Action.
+This Repository provides instructions for setting and publishing your private LogSeq Graph as a shared site \<owner\>.github.io location using a GitHub Action.
 It also includes information about setting up the required API key and adding an index.html file for easy navigation.
 
 exmple:
