@@ -1,70 +1,56 @@
-## Description
-This Repository provides instructions for setting and publishing your private LogSeq Graph as a shared site \<owner\>.github.io location using a GitHub Actions.
+# Description
 
-exmple:
-> If the \<owner\> `BestOwner` builds a privat repo `LogBook` containing a graph then this action would publish it under `bestowner.github.io/LogBook`
+This repository provides comprehensive instructions for setting up and publishing your private LogSeq Graph as a shared site on your \<owner\>.github.io location using GitHub Actions.
 
+Example:
+> If the \<owner\> is `BestOwner` and you have a private repository named `LogBook` containing a graph, this action will publish it under `bestowner.github.io/LogBook`.
 
-## How does it work
-When information is pushed into the Private LogSeq repository containing the the Graph, an action will trigger and convert all [public pages](https://docs.logseq.com/#/page/publishing%20(desktop%20app%20only)?anchor=ls-block-650b2586-475f-42d2-9473-5553f6901713) in the graph onto you public website.
+## How does it work?
 
+When you push information into the private repository containing the LogSeq graph, an action will be triggered. This action will convert all [public pages](https://docs.logseq.com/#/page/publishing%20(desktop%20app%20only)?anchor=ls-block-650b2586-475f-42d2-9473-5553f6901713) into your public website under a designated subfolder.
 
 # Setup
-## Configure LogSeq client to use a Github Repository
-To set up your LogSeq Graph in Githup use the 
 
+## Configure LogSeq client to use GitHub
+To set up your LogSeq Graph in GitHub, you need to use the [Logseq-Git-Sync-101](https://github.com/CharlesChiuGit/Logseq-Git-Sync-101) repository.
 
-## Configure your public Repository
-This Repository will be hosting all the graphs as websites `<owner>.github.io`
+Detailed instructions on how to accomplish this can be found in the [Good and Geeky](https://www.youtube.com/watch?v=c2HrdSOoVD8&t=1s) video tutorial.
+
+## Website - Configure your public Repository
+
+This repository will host all your graphs as websites on \<owner\>.github.io.
 
 1. ### Create a site
-    Follow these [instruction](https://docs.github.com/en/pages/quickstart) on how to build your own .github.io website if you dont allready have one.
-2. ### Set up an access Token
-    The Logseq Graph Repositores will reeuier an access token in order to publish to this site
-  -  I suggest using the new [Fine-grained Tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
-  but classic will work as well since you will only by suplying to a privat repository.
+   Follow the [instructions](https://docs.github.com/en/pages/quickstart) to create your own .github.io website if you don't already have one.
+
+2. ### Create an access token
+   The LogSeq Graph Repositories require an access token to publish to your site. It is recommended to use the new [Fine-grained Tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens), but the classic tokens will also work since you will only be supplying them to a private repository.
+
 3. ### Set up an Index
-  Every Graph will publish udner a differnet subfolder so if you brows directly into the site you will recive an `404 error`
-  to fix this you can copy the github.io/index.html int to the root of your new `<owner>.github.io` site.
+   Since each graph has its own subfolder, there is no basic index file for the site. Browsing directly into a subfolder will result in a 404 error. However, accessing `<owner>.github.io/LogSeq` will work.
 
-  *This is very simple index file that can be easly replaced with somthing better or tweaked for your personal use.*
+   To provide easy navigation, I have included an `index.html` file that can be placed in the root of your \<owner\>.github.io site. This file dynamically lists all the subfolders as buttons for accessing the graphs.
 
-## Configure Github Repository to publish the site on <owner>.github.io
-This uses the [logseq/publish-spa](https://github.com/logseq/publish-spa) solution to convert the Graph into a website using a different action to modify the resault. 
+   Simply copy the `github.io/index.html` file into the root of your new `<owner>.github.io` site.
 
-### Github Action
-To publish your LogSeq Graph in a remote repository, you need to provide the GitHub Action with an API key called 'GH_TOKEN'. 
+   *This is a very simple index file that can be easily replaced with something better or customized for your personal use.*
 
-1. To create the 'GH_TOKEN' secret in the '<owner>.github.io' repository, under "`Settings`>`Secrets and variables`>`Action`>`Secrets`" (/settings/secrets/actions).
-Name the secret GH_TOKEN and add the API key as its value.
+## Graphs - Configure your private Repositories
 
-2. Copy the file workflows/logseq-publisher.yaml to you new LogSew Repository under the folder '.github/workflows/' to your graph's github repository.
+The Graph repositories use the [logseq/publish-spa](https://github.com/logseq/publish-spa) solution to convert the Graph into a website using a modified action.
 
-### Destination Change
-you can manuly set change the destination by adding the following variables under "`Settings`>`Secrets and variables`>`Actionv>`Variables`" (/settings/variables/actions).
-`FOLDER`
-`GITHUB_IO`
+1. ### Set up Token Authentication
+   Before you can publish your LogSeq Graph in a remote repository, you need to provide the GitHub Action with an API secret called **GH_TOKEN**.
+   - To create the **GH_TOKEN**, go to `Settings`>`Secrets and variables`>`Action`>`Secrets` *(/settings/secrets/actions)*.
+   - Name the secret **GH_TOKEN** and add the API access token created in **Webiste step**.
 
-example: 
-> FOLDER = LogGraph
-> GITHUB_IO = NextBestOwner
-> resaults in: 'nextbestowner.github.io/LogGraph'
+2. ### Create GitHub Action
+   Copy the file `workflows/logseq-publisher.yaml` to your new LogSeq repository under the folder `.github/workflows/` in your graph's GitHub repository.
 
+3. ### Destination Change (optional)
+   You can manually change the destination by adding the following variables under `Settings`>`Secrets and variables`>`Action`>`Variables` *(/settings/variables/actions)*.
+   - `FOLDER`
+   - `GITHUB_IO`
 
-
-
-
-## Configure <owner>.github.io to list out all publishesd Graphs
-
-
-
-
-
-
-
-### Index
-Since each Graph has its own subfolder, there is no basic index file for the site. Browsing directly into a subfolder will result in a 404 error. However, accessing newowner.github.io/LogSeq will work.
-
-To provide easy navigation, I have included an index.html file that can be placed in the root of newowner.github.io. This file dynamically lists all the subfolders as buttons for accessing the graphs.
-
-You need to replce <NewOwner/newowner.github.io> in fetch('https://api.github.com/repos/<NewOwner/newowner.github.io>/contents/') for this to work.
+   Example:
+   > FOLDER=LogGraph, GITHUB_IO=NextBestOwner, results in: 'nextbestowner.github.io/LogGraph'
