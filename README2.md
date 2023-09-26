@@ -13,11 +13,10 @@ When information is pushed into the private repository containing the LogSeq gra
 
 # Setup
 
-## Configure LogSeq client to use a GitHub Repository
+## Configure LogSeq client to use a GitHub
+To set up your LogSeq Graph in GitHub, you need to use [Logseq-Git-Sync-101](https://github.com/CharlesChiuGit/Logseq-Git-Sync-101)
 
-To set up your LogSeq Graph in GitHub, follow these steps:
-
-1. Configure your LogSeq client to use a GitHub repository.
+Detailed instruction on how to do this can be found at [Good and Geeky](https://www.youtube.com/watch?v=c2HrdSOoVD8&t=1s)
 
 ## Configure your public Repository (website)
 
