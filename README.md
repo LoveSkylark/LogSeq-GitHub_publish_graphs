@@ -1,6 +1,3 @@
-
-Try this markdown:
-
 ![alt text](logseq.png)
 
 # Description
